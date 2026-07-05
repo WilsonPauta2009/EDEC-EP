@@ -1,5 +1,5 @@
 <div class="shell">
-  <aside class="sidebar" aria-label="Navegación principal">
+  <header class="topbar">
     <a class="brand" routerLink="/inicio" aria-label="Ir al inicio">
       <img src="assets/brand/EDEC-EP_symbol.svg" alt="" aria-hidden="true">
       <span>
@@ -8,41 +8,41 @@
       </span>
     </a>
 
-    <nav class="nav">
-      @for (item of store.navItems; track item.path) {
-        <a [routerLink]="item.path" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: item.path === '/inicio' }">
-          <span class="material-symbols-rounded">{{ item.icon }}</span>
-          <span>{{ item.label }}</span>
-        </a>
-      }
-    </nav>
+    <div class="topbar__center">
+      <strong>by SoftLution (piloto)</strong>
+      <span>Servicios, convocatorias y seguimiento público</span>
+    </div>
 
-    <section class="article-card">
-      <span>Art. 17</span>
-      <strong>Seguimiento y difusión pública</strong>
-      <p>Plan Cantonal, convocatorias, beneficiarios y control ciudadano en una sola experiencia.</p>
-    </section>
-  </aside>
+    <div class="topbar__actions">
+      <a class="button button--secondary" routerLink="/servicios">
+        <span class="material-symbols-rounded">support_agent</span>
+        Servicios
+      </a>
+      <a class="button button--primary" routerLink="/convocatorias">
+        <span class="material-symbols-rounded">edit_document</span>
+        Postular
+      </a>
+      <div class="user-badge" [title]="session.user().role">{{ session.initials() }}</div>
+    </div>
+  </header>
 
-  <div class="main">
-    <header class="topbar">
-      <div>
-        <strong>Piloto funcional</strong>
-        <span>Modelo mejorado para EDEC-EP / Cuenca</span>
-      </div>
+  <div class="shell__body">
+    <aside class="sidebar" aria-label="Navegación principal">
+      <nav class="nav">
+        @for (item of store.navItems; track item.path) {
+          <a [routerLink]="item.path" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: item.path === '/inicio' }">
+            <span class="material-symbols-rounded">{{ item.icon }}</span>
+            <span>{{ item.label }}</span>
+          </a>
+        }
+      </nav>
 
-      <div class="topbar__actions">
-        <a class="button button--secondary" routerLink="/convocatorias">
-          <span class="material-symbols-rounded">edit_document</span>
-          Postular
-        </a>
-        <a class="button button--primary" routerLink="/seguimiento">
-          <span class="material-symbols-rounded">visibility</span>
-          Ver avance
-        </a>
-        <div class="user-badge" [title]="session.user().role">{{ session.initials() }}</div>
-      </div>
-    </header>
+      <section class="article-card">
+        <span>Art. 17</span>
+        <strong>Seguimiento y difusión pública</strong>
+        <p>Plan Cantonal, convocatorias, beneficiarios y control ciudadano en una sola experiencia.</p>
+      </section>
+    </aside>
 
     <main class="content">
       <router-outlet />

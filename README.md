@@ -1,4 +1,4 @@
-# EDEC-EP | Portal piloto PyME Cuenca
+# EDEC-EP | by SoftLution (piloto)
 
 Prototipo funcional en Angular 22 para presentar una versión mejorada de portal público de desarrollo económico, emprendimiento, innovación, convocatorias, beneficiarios y seguimiento ciudadano para Cuenca.
 

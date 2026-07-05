@@ -3,13 +3,11 @@
   isolation: isolate;
   display: flex;
   align-items: center;
-  min-block-size: clamp(560px, 78vh, 790px);
-  margin: -8px -4px 22px;
+  min-block-size: calc(100vh - 76px);
+  margin: -24px -24px 22px;
   padding: clamp(28px, 6vw, 72px);
-  border-radius: 8px;
   overflow: hidden;
   background: var(--ink);
-  box-shadow: var(--shadow);
 }
 
 .hero__video,
@@ -21,19 +19,22 @@
 }
 
 .hero__video {
-  z-index: -2;
+  z-index: 0;
+  filter: brightness(1.08) contrast(1.05) saturate(1.08);
   object-fit: cover;
   object-position: center;
 }
 
 .hero__overlay {
-  z-index: -1;
+  z-index: 1;
   background:
-    linear-gradient(90deg, rgba(8, 16, 28, 0.86) 0%, rgba(8, 16, 28, 0.68) 45%, rgba(8, 16, 28, 0.24) 100%),
-    linear-gradient(0deg, rgba(8, 16, 28, 0.48), rgba(8, 16, 28, 0.06));
+    linear-gradient(90deg, rgba(8, 16, 28, 0.72) 0%, rgba(8, 16, 28, 0.46) 44%, rgba(8, 16, 28, 0.08) 100%),
+    linear-gradient(0deg, rgba(8, 16, 28, 0.34), rgba(8, 16, 28, 0));
 }
 
 .hero__copy {
+  position: relative;
+  z-index: 2;
   display: grid;
   gap: 18px;
   max-inline-size: 760px;
@@ -42,9 +43,11 @@
 .hero h1 {
   margin: 0;
   color: #ffffff;
-  font-size: clamp(2.55rem, 5.8vw, 5.55rem);
-  line-height: 0.96;
+  font-size: clamp(2.45rem, 5.2vw, 5.15rem);
+  font-weight: 800;
+  line-height: 1;
   letter-spacing: 0;
+  text-shadow: 0 12px 34px rgba(0, 0, 0, 0.35);
 }
 
 .hero p {
@@ -52,7 +55,9 @@
   margin: 0;
   color: #eef5f7;
   font-size: clamp(1rem, 1.4vw, 1.18rem);
+  font-weight: 500;
   line-height: 1.7;
+  text-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
 }
 
 .hero .eyebrow {
@@ -100,7 +105,7 @@
   background: rgba(8, 16, 28, 0.28);
   padding: 0 13px;
   font-size: 0.86rem;
-  font-weight: 800;
+  font-weight: 700;
   backdrop-filter: blur(10px);
 }
 
@@ -330,14 +335,14 @@
 @media (max-width: 760px) {
   .hero {
     align-items: end;
-    min-block-size: 640px;
-    margin: 0 0 18px;
+    min-block-size: 680px;
+    margin: -16px -16px 18px;
     padding: 22px;
   }
 
   .hero__overlay {
     background:
-      linear-gradient(0deg, rgba(8, 16, 28, 0.9) 0%, rgba(8, 16, 28, 0.68) 58%, rgba(8, 16, 28, 0.28) 100%);
+      linear-gradient(0deg, rgba(8, 16, 28, 0.86) 0%, rgba(8, 16, 28, 0.56) 58%, rgba(8, 16, 28, 0.18) 100%);
   }
 
   .hero h1 {
