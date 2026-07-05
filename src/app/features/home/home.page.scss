@@ -1,40 +1,62 @@
 .hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1.02fr) minmax(360px, 0.98fr);
+  position: relative;
+  isolation: isolate;
+  display: flex;
   align-items: center;
-  gap: clamp(24px, 4vw, 54px);
-  min-block-size: clamp(560px, 72vh, 780px);
+  min-block-size: clamp(560px, 78vh, 790px);
   margin: -8px -4px 22px;
-  padding: clamp(28px, 5vw, 64px);
-  border: 1px solid var(--line);
+  padding: clamp(28px, 6vw, 72px);
   border-radius: 8px;
   overflow: hidden;
-  background:
-    linear-gradient(115deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.9) 47%, rgba(255, 255, 255, 0.48) 100%),
-    url('/assets/media/EDEC-EP_hero-cuenca-portal.png') center / cover;
+  background: var(--ink);
   box-shadow: var(--shadow);
+}
+
+.hero__video,
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.hero__video {
+  z-index: -2;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero__overlay {
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(8, 16, 28, 0.86) 0%, rgba(8, 16, 28, 0.68) 45%, rgba(8, 16, 28, 0.24) 100%),
+    linear-gradient(0deg, rgba(8, 16, 28, 0.48), rgba(8, 16, 28, 0.06));
 }
 
 .hero__copy {
   display: grid;
   gap: 18px;
-  max-inline-size: 720px;
+  max-inline-size: 760px;
 }
 
 .hero h1 {
   margin: 0;
-  color: var(--ink);
-  font-size: clamp(2.55rem, 5.8vw, 5.35rem);
+  color: #ffffff;
+  font-size: clamp(2.55rem, 5.8vw, 5.55rem);
   line-height: 0.96;
   letter-spacing: 0;
 }
 
 .hero p {
-  max-inline-size: 660px;
+  max-inline-size: 690px;
   margin: 0;
-  color: var(--slate);
+  color: #eef5f7;
   font-size: clamp(1rem, 1.4vw, 1.18rem);
   line-height: 1.7;
+}
+
+.hero .eyebrow {
+  color: #9df7ee;
 }
 
 .hero__actions,
@@ -47,9 +69,25 @@
   gap: 12px;
 }
 
+.hero .button--primary {
+  background: #ffffff;
+  color: var(--ink);
+}
+
+.hero .button--primary:hover {
+  background: #e7f8f6;
+}
+
+.hero .button--secondary {
+  border-color: rgba(255, 255, 255, 0.56);
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  backdrop-filter: blur(10px);
+}
+
 .hero__trust {
   margin-block-start: 8px;
-  color: var(--slate);
+  color: #ffffff;
 }
 
 .hero__trust span {
@@ -57,52 +95,36 @@
   align-items: center;
   gap: 7px;
   min-block-size: 38px;
-  border: 1px solid rgba(0, 143, 131, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.26);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.78);
+  background: rgba(8, 16, 28, 0.28);
   padding: 0 13px;
   font-size: 0.86rem;
   font-weight: 800;
+  backdrop-filter: blur(10px);
 }
 
 .hero__trust strong {
-  color: var(--teal-strong);
+  color: #9df7ee;
 }
 
-.hero__media {
-  position: relative;
-  overflow: hidden;
-  border: 8px solid #ffffff;
-  border-radius: 8px;
-  aspect-ratio: 16 / 9;
-  background: var(--ink);
-  box-shadow: 0 24px 70px rgba(18, 32, 51, 0.28);
+.kpis,
+.service-grid,
+.entities__grid,
+.article17__grid,
+.split,
+.intro-band {
+  display: grid;
+  gap: 14px;
 }
 
-.hero__media::before {
-  content: '';
-  position: absolute;
-  inset: -44px auto auto -30px;
-  inline-size: 120px;
-  block-size: 120px;
-  border-radius: 30px;
-  background: var(--lime);
-  transform: rotate(18deg);
-  z-index: 0;
-}
-
-.hero__media iframe {
-  position: relative;
-  z-index: 1;
-  inline-size: 100%;
-  block-size: 100%;
-  border: 0;
+.kpis,
+.service-grid,
+.article17__grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .kpis {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
   margin-block: 18px;
 }
 
@@ -111,21 +133,18 @@
 .article17 {
   margin-block-start: 18px;
   border-radius: 8px;
-  background: var(--ink);
-  color: #ffffff;
   padding: clamp(22px, 4vw, 38px);
 }
 
 .intro-band {
-  display: grid;
   grid-template-columns: minmax(280px, 0.78fr) minmax(0, 1fr);
-  gap: 26px;
   align-items: start;
+  background: var(--ink);
+  color: #ffffff;
 }
 
 .intro-band .eyebrow,
-.entities .eyebrow,
-.article17 .eyebrow {
+.entities .eyebrow {
   color: #81eee2;
 }
 
@@ -143,15 +162,12 @@
 }
 
 .service-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
   margin-block-start: 18px;
 }
 
 .service-card,
-.article17__grid a,
 .entities__grid article,
+.article17__grid a,
 .panel {
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -166,9 +182,7 @@
   color: var(--ink);
   padding: 20px;
   text-decoration: none;
-  transition:
-    border-color 180ms ease,
-    transform 180ms ease;
+  transition: border-color 180ms ease, transform 180ms ease;
 }
 
 .service-card:hover {
@@ -210,9 +224,7 @@
 }
 
 .split {
-  display: grid;
   grid-template-columns: minmax(0, 1.32fr) minmax(330px, 0.68fr);
-  gap: 18px;
   margin-block-start: 18px;
 }
 
@@ -260,13 +272,11 @@
 
 .entities {
   background: #0f766e;
+  color: #ffffff;
 }
 
-.entities__grid,
-.article17__grid {
-  display: grid;
+.entities__grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
   margin-block-start: 18px;
 }
 
@@ -285,17 +295,13 @@
 }
 
 .article17 {
+  border: 1px solid var(--line);
   background: #ffffff;
   color: var(--ink);
-  border: 1px solid var(--line);
 }
 
 .article17 .eyebrow {
   color: var(--teal);
-}
-
-.article17__grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .article17__grid a {
@@ -309,7 +315,6 @@
 }
 
 @media (max-width: 1180px) {
-  .hero,
   .intro-band,
   .split {
     grid-template-columns: 1fr;
@@ -324,13 +329,29 @@
 
 @media (max-width: 760px) {
   .hero {
-    min-block-size: auto;
+    align-items: end;
+    min-block-size: 640px;
     margin: 0 0 18px;
     padding: 22px;
   }
 
+  .hero__overlay {
+    background:
+      linear-gradient(0deg, rgba(8, 16, 28, 0.9) 0%, rgba(8, 16, 28, 0.68) 58%, rgba(8, 16, 28, 0.28) 100%);
+  }
+
   .hero h1 {
-    font-size: clamp(2.25rem, 13vw, 3.4rem);
+    font-size: clamp(2.18rem, 11vw, 3.35rem);
+  }
+
+  .hero__actions,
+  .hero__actions .button,
+  .hero__trust span {
+    inline-size: 100%;
+  }
+
+  .hero__trust {
+    align-items: stretch;
   }
 
   .service-grid,
