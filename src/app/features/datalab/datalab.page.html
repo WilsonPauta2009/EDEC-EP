@@ -1,0 +1,69 @@
+<header class="page-title">
+  <span class="eyebrow">Datos abiertos</span>
+  <h1>DataLab productivo de Cuenca</h1>
+  <p>Indicadores listos para evolucionar hacia API pública, tableros de BI y descargas en formatos abiertos.</p>
+</header>
+
+<section class="datalab-grid">
+  <article class="card indicators">
+    <div class="panel-heading">
+      <div>
+        <span class="eyebrow">Indicadores base</span>
+        <h2>Lectura ejecutiva</h2>
+      </div>
+      <span class="pill">Demo 2026</span>
+    </div>
+
+    <div class="indicator-list">
+      @for (indicator of store.indicators; track indicator.label) {
+        <div class="indicator-row">
+          <div>
+            <strong>{{ indicator.label }}</strong>
+            <span>{{ indicator.detail }}</span>
+          </div>
+          <em>{{ indicator.value | number }} {{ indicator.unit }}</em>
+          <div class="bar"><span [style.width.%]="ratio(indicator)"></span></div>
+        </div>
+      }
+    </div>
+  </article>
+
+  <aside class="card data-card">
+    <span class="eyebrow">Interoperabilidad</span>
+    <h2>Fuentes sugeridas</h2>
+    <p>El piloto separa la interfaz del origen de datos para conectar servicios municipales, EDEC y ETAPA mediante API.</p>
+  </aside>
+
+  <article class="sources">
+    @for (source of store.integrationSources; track source.id) {
+      <section class="card source-card">
+        <span class="status">{{ source.status }}</span>
+        <h3>{{ source.entity }}</h3>
+        <strong>{{ source.source }}</strong>
+        <p>{{ source.purpose }}</p>
+      </section>
+    }
+  </article>
+
+  <article class="card openness">
+    <span class="eyebrow">Formatos comprensibles</span>
+    <h2>Diseño preparado para transparencia</h2>
+    <div class="open-grid">
+      <div>
+        <span class="material-symbols-rounded">table_chart</span>
+        <strong>CSV / XLSX</strong>
+        <p>Descargas simples para análisis ciudadano o institucional.</p>
+      </div>
+      <div>
+        <span class="material-symbols-rounded">api</span>
+        <strong>API JSON</strong>
+        <p>Integración futura con backend .NET Core y SQL Server.</p>
+      </div>
+      <div>
+        <span class="material-symbols-rounded">verified_user</span>
+        <strong>Datos trazables</strong>
+        <p>Fecha de corte, responsable, fuente y versión de indicador.</p>
+      </div>
+    </div>
+  </article>
+</section>

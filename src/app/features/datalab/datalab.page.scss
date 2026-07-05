@@ -1,0 +1,167 @@
+.datalab-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) 360px;
+  gap: 18px;
+}
+
+.indicators,
+.data-card,
+.openness {
+  padding: 18px;
+}
+
+.panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-block-end: 14px;
+}
+
+.panel-heading h2,
+.data-card h2,
+.openness h2 {
+  margin: 4px 0 0;
+  color: var(--ink);
+}
+
+.indicator-list {
+  display: grid;
+  gap: 12px;
+}
+
+.indicator-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-soft);
+  padding: 14px;
+}
+
+.indicator-row strong,
+.indicator-row span {
+  display: block;
+}
+
+.indicator-row span,
+.indicator-row em,
+.data-card p,
+.source-card p,
+.open-grid p {
+  color: var(--slate);
+  line-height: 1.55;
+}
+
+.indicator-row em {
+  font-style: normal;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.bar {
+  grid-column: 1 / -1;
+  overflow: hidden;
+  block-size: 12px;
+  border-radius: 999px;
+  background: #e7eef4;
+}
+
+.bar span {
+  display: block;
+  block-size: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--blue), var(--teal));
+}
+
+.data-card {
+  display: grid;
+  align-content: start;
+}
+
+.sources {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-column: 1 / -1;
+  gap: 14px;
+}
+
+.source-card {
+  padding: 16px;
+}
+
+.source-card h3 {
+  margin: 10px 0 8px;
+  color: var(--ink);
+}
+
+.source-card strong {
+  display: block;
+  color: var(--teal);
+}
+
+.status {
+  display: inline-flex;
+  border-radius: 999px;
+  background: #eefcf8;
+  color: var(--teal-strong);
+  padding: 6px 10px;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.openness {
+  grid-column: 1 / -1;
+}
+
+.open-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-block-start: 14px;
+}
+
+.open-grid div {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-soft);
+  padding: 16px;
+}
+
+.open-grid .material-symbols-rounded {
+  color: var(--teal);
+  font-size: 34px;
+}
+
+.open-grid strong {
+  display: block;
+  margin-block: 8px 4px;
+}
+
+.open-grid p {
+  margin: 0;
+}
+
+@media (max-width: 1080px) {
+  .datalab-grid,
+  .sources,
+  .open-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .indicators,
+  .openness,
+  .sources {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 760px) {
+  .datalab-grid,
+  .sources,
+  .open-grid,
+  .indicator-row {
+    grid-template-columns: 1fr;
+  }
+}

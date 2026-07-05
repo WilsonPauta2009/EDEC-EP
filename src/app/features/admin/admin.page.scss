@@ -1,0 +1,161 @@
+.admin-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 330px;
+  gap: 18px;
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.summary-card {
+  display: grid;
+  gap: 6px;
+  min-block-size: 150px;
+  padding: 18px;
+}
+
+.summary-card .material-symbols-rounded {
+  color: var(--teal);
+  font-size: 34px;
+}
+
+.summary-card strong {
+  color: var(--ink);
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+}
+
+.summary-card small {
+  color: var(--slate);
+  font-weight: 900;
+}
+
+.actions,
+.table-card,
+.observations {
+  padding: 18px;
+}
+
+.actions {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+}
+
+.actions h2,
+.table-title h2 {
+  margin: 4px 0 0;
+  color: var(--ink);
+}
+
+.actions p,
+.empty-text,
+.observation p {
+  color: var(--slate);
+  line-height: 1.55;
+}
+
+.notice {
+  margin: 0;
+  border-radius: 8px;
+  background: #ecfdf5;
+  color: #166534;
+  padding: 10px;
+  font-weight: 800;
+}
+
+.table-card {
+  grid-column: 1 / -1;
+}
+
+.table-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-block-end: 14px;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  inline-size: 100%;
+  border-collapse: collapse;
+  min-inline-size: 720px;
+}
+
+th,
+td {
+  border-block-end: 1px solid var(--line);
+  padding: 12px 10px;
+  text-align: start;
+}
+
+th {
+  color: var(--muted);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+}
+
+td {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.observations {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 12px;
+}
+
+.observation {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-soft);
+  padding: 14px;
+}
+
+.observation strong,
+.observation span {
+  display: block;
+}
+
+.observation span {
+  color: var(--teal);
+  margin-block: 4px;
+  font-size: 0.86rem;
+  font-weight: 900;
+}
+
+.observation p {
+  margin: 0;
+}
+
+@media (max-width: 1120px) {
+  .admin-grid,
+  .summary {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .actions {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 760px) {
+  .admin-grid,
+  .summary,
+  .table-title {
+    grid-template-columns: 1fr;
+  }
+
+  .table-title {
+    align-items: flex-start;
+    display: grid;
+  }
+}

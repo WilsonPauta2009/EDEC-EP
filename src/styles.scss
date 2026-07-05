@@ -1,0 +1,197 @@
+:root {
+  --font-heading: Poppins, Inter, 'Segoe UI', sans-serif;
+  --font-body: Inter, 'Segoe UI', Arial, sans-serif;
+  --bg: #f5f7fb;
+  --surface: #ffffff;
+  --surface-soft: #f8fafc;
+  --ink: #122033;
+  --text: #263241;
+  --slate: #526071;
+  --muted: #64748b;
+  --line: #dce4ee;
+  --teal: #008f83;
+  --teal-strong: #006f67;
+  --blue: #246bfe;
+  --gold: #c48a2c;
+  --coral: #f05d4f;
+  --lime: #b7e65b;
+  --success: #16a34a;
+  --danger: #b42318;
+  --shadow: 0 22px 55px rgba(18, 32, 51, 0.12);
+  --shadow-soft: 0 12px 28px rgba(18, 32, 51, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-block-size: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+.material-symbols-rounded {
+  font-family: 'Material Symbols Rounded';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+.eyebrow {
+  color: var(--teal);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-block-size: 44px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 0 16px;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 800;
+  transition:
+    background 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+}
+
+.button--primary {
+  background: var(--ink);
+  color: #ffffff;
+}
+
+.button--primary:hover {
+  background: #24364c;
+}
+
+.button--secondary {
+  border-color: var(--line);
+  background: #ffffff;
+  color: var(--ink);
+}
+
+.button--ghost {
+  background: transparent;
+  color: var(--teal);
+}
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+.field label {
+  color: var(--slate);
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
+.field input,
+.field select,
+.field textarea {
+  inline-size: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--ink);
+  padding: 11px 12px;
+}
+
+.field textarea {
+  min-block-size: 98px;
+  resize: vertical;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  background: #e8f7f4;
+  color: var(--teal-strong);
+  padding: 6px 10px;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.page-title {
+  display: grid;
+  gap: 6px;
+  margin-block-end: 20px;
+}
+
+.page-title h1 {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  letter-spacing: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+}
+
+.page-title p {
+  max-inline-size: 860px;
+  margin: 0;
+  color: var(--slate);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+@media (max-width: 760px) {
+  .button {
+    inline-size: 100%;
+  }
+}

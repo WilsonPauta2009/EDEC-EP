@@ -1,0 +1,72 @@
+<header class="page-title">
+  <span class="eyebrow">Literal b)</span>
+  <h1>Convocatorias activas con bases técnicas</h1>
+  <p>Módulo funcional para publicar convocatorias, mostrar documentos, validar requisitos y registrar postulaciones piloto.</p>
+</header>
+
+<section class="calls-layout">
+  <div class="calls">
+    @for (call of store.calls; track call.id) {
+      <button class="call-card" [class.active]="selected().id === call.id" type="button" (click)="selectCall(call)">
+        <span class="status">{{ call.status }}</span>
+        <strong>{{ call.title }}</strong>
+        <small>{{ call.category }} · cierre {{ call.deadline }}</small>
+        <p>{{ call.summary }}</p>
+      </button>
+    }
+  </div>
+
+  <article class="card call-detail">
+    <span class="pill">{{ selected().status }}</span>
+    <h2>{{ selected().title }}</h2>
+    <p>{{ selected().summary }}</p>
+
+    <div class="columns">
+      <div>
+        <h3>Requisitos</h3>
+        <ul>
+          @for (item of selected().requirements; track item) {
+            <li>{{ item }}</li>
+          }
+        </ul>
+      </div>
+      <div>
+        <h3>Documentos</h3>
+        <ul>
+          @for (item of selected().documents; track item) {
+            <li>{{ item }}</li>
+          }
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <form class="card application" (ngSubmit)="submit()">
+    <span class="eyebrow">Postulación simulada</span>
+    <h2>Registrar postulación</h2>
+    <label class="field">
+      <span>Representante</span>
+      <input name="applicantName" [(ngModel)]="application.applicantName">
+    </label>
+    <label class="field">
+      <span>Negocio / proyecto</span>
+      <input name="businessName" [(ngModel)]="application.businessName">
+    </label>
+    <label class="field">
+      <span>Correo</span>
+      <input name="email" type="email" [(ngModel)]="application.email">
+    </label>
+    <label class="field">
+      <span>Teléfono</span>
+      <input name="phone" [(ngModel)]="application.phone">
+    </label>
+    <label class="field">
+      <span>Resumen</span>
+      <textarea name="notes" [(ngModel)]="application.notes"></textarea>
+    </label>
+    <button class="button button--primary" type="submit">Guardar postulación</button>
+    @if (saved()) {
+      <p class="notice">{{ saved() }}</p>
+    }
+  </form>
+</section>

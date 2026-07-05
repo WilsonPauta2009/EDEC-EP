@@ -1,0 +1,82 @@
+<header class="page-title">
+  <span class="eyebrow">Literal c)</span>
+  <h1>Beneficiarios y proyectos apoyados</h1>
+  <p>Consulta pública de proyectos, ubicación, programa vinculado, avance e impacto esperado para la ciudad.</p>
+</header>
+
+<section class="beneficiary-layout">
+  <aside class="card filters">
+    <label class="field">
+      <span>Buscar proyecto</span>
+      <input [ngModel]="query()" (ngModelChange)="query.set($event)" placeholder="Nombre, parroquia o programa">
+    </label>
+    <label class="field">
+      <span>Sector productivo</span>
+      <select [ngModel]="sector()" (ngModelChange)="sector.set($event)">
+        @for (item of sectors(); track item) {
+          <option [value]="item">{{ item }}</option>
+        }
+      </select>
+    </label>
+    <div class="filter-summary">
+      <strong>{{ filtered().length }}</strong>
+      <span>proyectos visibles</span>
+    </div>
+    <a class="button button--secondary" routerLink="/convocatorias">
+      <span class="material-symbols-rounded">campaign</span>
+      Ver convocatorias
+    </a>
+  </aside>
+
+  <div class="project-list">
+    @for (project of filtered(); track project.id) {
+      <button class="project-card" [class.active]="selected().id === project.id" type="button" (click)="select(project)">
+        <span class="pill">{{ project.status }}</span>
+        <strong>{{ project.name }}</strong>
+        <small>{{ project.sector }} · {{ project.parish }}</small>
+        <div class="bar" aria-hidden="true">
+          <span [style.width.%]="project.progress"></span>
+        </div>
+        <em>{{ project.progress }}% de avance</em>
+      </button>
+    } @empty {
+      <article class="card empty">
+        <span class="material-symbols-rounded">search_off</span>
+        <strong>No hay resultados con esos filtros</strong>
+        <p>Ajuste el texto de búsqueda o seleccione otro sector productivo.</p>
+      </article>
+    }
+  </div>
+
+  <article class="card detail">
+    <span class="eyebrow">Ficha pública</span>
+    <h2>{{ selected().name }}</h2>
+    <dl>
+      <div>
+        <dt>Programa</dt>
+        <dd>{{ selected().program }}</dd>
+      </div>
+      <div>
+        <dt>Parroquia</dt>
+        <dd>{{ selected().parish }}</dd>
+      </div>
+      <div>
+        <dt>Sector</dt>
+        <dd>{{ selected().sector }}</dd>
+      </div>
+      <div>
+        <dt>Estado</dt>
+        <dd>{{ selected().status }}</dd>
+      </div>
+    </dl>
+
+    <h3>Impacto esperado</h3>
+    <p>{{ selected().impact }}</p>
+
+    <div class="detail-progress">
+      <strong>{{ selected().progress }}%</strong>
+      <span>avance reportado</span>
+      <div class="bar"><span [style.width.%]="selected().progress"></span></div>
+    </div>
+  </article>
+</section>

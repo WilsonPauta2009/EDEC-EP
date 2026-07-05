@@ -1,0 +1,68 @@
+<header class="page-title">
+  <span class="eyebrow">Servicios PyME</span>
+  <h1>Rutas de atención por necesidad</h1>
+  <p>El portal evita que el usuario navegue por organigramas. Primero identifica qué necesita y luego lo conecta con una ruta clara.</p>
+</header>
+
+<section class="service-layout">
+  <aside class="card filters">
+    <label class="field">
+      <span>Filtrar por categoría</span>
+      <select [ngModel]="category()" (ngModelChange)="category.set($event)">
+        @for (item of categories(); track item) {
+          <option [value]="item">{{ item }}</option>
+        }
+      </select>
+    </label>
+
+    <div class="service-list">
+      @for (service of filtered(); track service.id) {
+        <button type="button" [class.active]="selected().id === service.id" (click)="choose(service)">
+          <span class="material-symbols-rounded">{{ service.icon }}</span>
+          <span>
+            <strong>{{ service.title }}</strong>
+            <small>{{ service.audience }}</small>
+          </span>
+        </button>
+      }
+    </div>
+  </aside>
+
+  <article class="card detail">
+    <span class="pill">{{ selected().priority }} prioridad</span>
+    <h2>{{ selected().title }}</h2>
+    <p>{{ selected().description }}</p>
+
+    <h3>Entregables esperados</h3>
+    <ul>
+      @for (deliverable of selected().deliverables; track deliverable) {
+        <li>{{ deliverable }}</li>
+      }
+    </ul>
+  </article>
+
+  <form class="card appointment" (ngSubmit)="schedule()">
+    <span class="eyebrow">Formulario demo</span>
+    <h2>Agendar asesoría</h2>
+    <label class="field">
+      <span>Nombre</span>
+      <input name="name" [(ngModel)]="appointment.name" placeholder="Ej. Ana Cordero">
+    </label>
+    <label class="field">
+      <span>Negocio / emprendimiento</span>
+      <input name="business" [(ngModel)]="appointment.business" placeholder="Ej. Taller artesanal">
+    </label>
+    <label class="field">
+      <span>Correo</span>
+      <input name="email" type="email" [(ngModel)]="appointment.email" placeholder="correo@ejemplo.com">
+    </label>
+    <label class="field">
+      <span>Fecha tentativa</span>
+      <input name="preferredDate" type="date" [(ngModel)]="appointment.preferredDate">
+    </label>
+    <button class="button button--primary" type="submit">Guardar asesoría piloto</button>
+    @if (saved()) {
+      <p class="notice">{{ saved() }}</p>
+    }
+  </form>
+</section>

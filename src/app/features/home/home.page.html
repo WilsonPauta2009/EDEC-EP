@@ -1,0 +1,149 @@
+<section class="hero">
+  <div class="hero__copy">
+    <span class="eyebrow">Portal piloto EDEC-EP</span>
+    <h1>Impulsa tu negocio en Cuenca desde un solo portal</h1>
+    <p>
+      Servicios, convocatorias, beneficiarios, datos abiertos y seguimiento ciudadano para
+      emprendimientos, PyME y economía popular y solidaria.
+    </p>
+
+    <div class="hero__actions">
+      <a class="button button--primary" routerLink="/convocatorias">
+        <span class="material-symbols-rounded">campaign</span>
+        Postular a convocatoria
+      </a>
+      <a class="button button--secondary" routerLink="/servicios">
+        <span class="material-symbols-rounded">route</span>
+        Encontrar apoyo PyME
+      </a>
+    </div>
+
+    <div class="hero__trust" aria-label="Indicadores destacados">
+      <span><strong>4</strong> rutas de atención</span>
+      <span><strong>18</strong> parroquias cubiertas</span>
+      <span><strong>Art. 17</strong> integrado</span>
+    </div>
+  </div>
+
+  <div class="hero__media" aria-label="Video institucional">
+    <iframe
+      src="https://www.youtube.com/embed/6lABBjfUL6M"
+      title="Video institucional EDEC-EP"
+      loading="lazy"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
+
+<section class="kpis" aria-label="Indicadores del piloto">
+  @for (kpi of store.kpis(); track kpi.label) {
+    <app-kpi-card [kpi]="kpi" />
+  }
+</section>
+
+<section class="intro-band">
+  <div>
+    <span class="eyebrow">Experiencia mejorada</span>
+    <h2>Una portada pensada para actuar, no solo para leer comunicados</h2>
+  </div>
+  <p>
+    La página principal organiza el acceso por necesidad: recibir asesoría, postular,
+    revisar beneficiarios, consultar avances y explorar datos. Así el portal funciona
+    como ventanilla digital para el ecosistema productivo de Cuenca.
+  </p>
+</section>
+
+<section class="service-grid" aria-label="Rutas de atención">
+  @for (service of store.services; track service.id) {
+    <a class="service-card" routerLink="/servicios">
+      <span class="material-symbols-rounded">{{ service.icon }}</span>
+      <small>{{ service.category }}</small>
+      <strong>{{ service.title }}</strong>
+      <p>{{ service.description }}</p>
+    </a>
+  }
+</section>
+
+<section class="split">
+  <article class="panel panel--canvas">
+    <header class="panel__header">
+      <div>
+        <span class="eyebrow">Seguimiento público</span>
+        <h2>Programas priorizados</h2>
+      </div>
+      <a class="button button--ghost" routerLink="/seguimiento">Ver detalle</a>
+    </header>
+    <app-progress-canvas [programs]="store.programs" />
+  </article>
+
+  <article class="panel panel--steps">
+    <span class="eyebrow">Cómo funciona</span>
+    <h2>Del interés al seguimiento</h2>
+
+    <ol class="steps">
+      <li>
+        <span>1</span>
+        <div>
+          <strong>Identifica tu necesidad</strong>
+          <p>Elige asesoría, convocatoria, vitrina comercial o datos productivos.</p>
+        </div>
+      </li>
+      <li>
+        <span>2</span>
+        <div>
+          <strong>Registra tu solicitud</strong>
+          <p>Agenda atención o postula con información mínima y verificable.</p>
+        </div>
+      </li>
+      <li>
+        <span>3</span>
+        <div>
+          <strong>Consulta avances</strong>
+          <p>Revisa hitos, responsables, beneficiarios e indicadores públicos.</p>
+        </div>
+      </li>
+    </ol>
+  </article>
+</section>
+
+<section class="entities">
+  <div>
+    <span class="eyebrow">Integración territorial</span>
+    <h2>Entidades conectadas al piloto</h2>
+  </div>
+
+  <div class="entities__grid">
+    @for (source of store.integrationSources; track source.id) {
+      <article>
+        <small>{{ source.status }}</small>
+        <strong>{{ source.entity }}</strong>
+        <span>{{ source.source }}</span>
+        <p>{{ source.purpose }}</p>
+      </article>
+    }
+  </div>
+</section>
+
+<section class="article17">
+  <div class="article17__header">
+    <div>
+      <span class="eyebrow">Trazabilidad normativa</span>
+      <h2>Art. 17 integrado desde el diseño</h2>
+    </div>
+    <a class="button button--secondary" routerLink="/datalab">
+      <span class="material-symbols-rounded">monitoring</span>
+      Ver DataLab
+    </a>
+  </div>
+
+  <div class="article17__grid">
+    @for (item of store.articleRequirements; track item.literal) {
+      <a [routerLink]="item.route">
+        <strong>{{ item.literal }}</strong>
+        <span>{{ item.title }}</span>
+        <p>{{ item.implementation }}</p>
+      </a>
+    }
+  </div>
+</section>

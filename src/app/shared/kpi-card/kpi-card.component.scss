@@ -1,0 +1,43 @@
+.kpi {
+  display: grid;
+  gap: 9px;
+  min-block-size: 132px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 18px;
+  box-shadow: var(--shadow-soft);
+}
+
+.kpi span {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.kpi strong {
+  color: var(--ink);
+  font-size: 2.4rem;
+  line-height: 1;
+}
+
+.kpi small {
+  color: var(--slate);
+  font-weight: 700;
+}
+
+.kpi--teal {
+  border-block-start: 5px solid var(--teal);
+}
+
+.kpi--blue {
+  border-block-start: 5px solid var(--blue);
+}
+
+.kpi--gold {
+  border-block-start: 5px solid var(--gold);
+}
+
+.kpi--slate {
+  border-block-start: 5px solid var(--slate);
+}

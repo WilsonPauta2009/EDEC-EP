@@ -1,0 +1,94 @@
+<header class="page-title">
+  <span class="eyebrow">Literal d)</span>
+  <h1>Seguimiento ciudadano a programas</h1>
+  <p>Tablero público para revisar avance, responsables, presupuesto referencial, hitos y observaciones ciudadanas.</p>
+</header>
+
+<section class="tracking-grid">
+  <article class="card canvas-panel">
+    <div class="panel-heading">
+      <div>
+        <span class="eyebrow">Avance público</span>
+        <h2>Programas priorizados</h2>
+      </div>
+      <span class="pill">{{ store.feedback().length }} observaciones</span>
+    </div>
+    <app-progress-canvas [programs]="store.programs" />
+  </article>
+
+  <aside class="programs">
+    @for (program of store.programs; track program.id) {
+      <button class="program-card" [class.active]="selected().id === program.id" type="button" (click)="select(program)">
+        <span>{{ program.status }}</span>
+        <strong>{{ program.program }}</strong>
+        <small>{{ program.owner }}</small>
+        <em>{{ program.progress }}%</em>
+      </button>
+    }
+  </aside>
+
+  <article class="card detail">
+    <span class="eyebrow">Ficha de seguimiento</span>
+    <h2>{{ selected().program }}</h2>
+    <dl>
+      <div>
+        <dt>Responsable</dt>
+        <dd>{{ selected().owner }}</dd>
+      </div>
+      <div>
+        <dt>Presupuesto</dt>
+        <dd>{{ selected().budget }}</dd>
+      </div>
+      <div>
+        <dt>Hito vigente</dt>
+        <dd>{{ selected().milestone }}</dd>
+      </div>
+    </dl>
+    <div class="meter">
+      <span [style.width.%]="selected().progress"></span>
+    </div>
+  </article>
+
+  <form class="card feedback" (ngSubmit)="submitFeedback()">
+    <span class="eyebrow">Participación ciudadana</span>
+    <h2>Registrar observación</h2>
+    <label class="field">
+      <span>Programa</span>
+      <select name="programId" [(ngModel)]="feedbackForm.programId">
+        @for (program of store.programs; track program.id) {
+          <option [value]="program.id">{{ program.program }}</option>
+        }
+      </select>
+    </label>
+    <label class="field">
+      <span>Nombre ciudadano</span>
+      <input name="citizen" [(ngModel)]="feedbackForm.citizen" placeholder="Ej. María Torres">
+    </label>
+    <label class="field">
+      <span>Observación</span>
+      <textarea name="comment" [(ngModel)]="feedbackForm.comment" placeholder="Escriba una consulta, comentario o recomendación"></textarea>
+    </label>
+    <button class="button button--primary" type="submit">Guardar observación</button>
+    @if (saved()) {
+      <p class="notice">{{ saved() }}</p>
+    }
+  </form>
+
+  <article class="card timeline">
+    <div class="panel-heading">
+      <div>
+        <span class="eyebrow">Registro demo</span>
+        <h2>Últimas observaciones</h2>
+      </div>
+    </div>
+    @for (item of store.feedback().slice(0, 4); track item.id) {
+      <div class="feedback-item">
+        <strong>{{ item.citizen }}</strong>
+        <span>{{ item.program }}</span>
+        <p>{{ item.comment }}</p>
+      </div>
+    } @empty {
+      <p class="empty-text">Aún no se han registrado observaciones en esta sesión.</p>
+    }
+  </article>
+</section>

@@ -1,0 +1,121 @@
+<header class="page-title">
+  <span class="eyebrow">Backoffice piloto</span>
+  <h1>Administración del portal EDEC-EP</h1>
+  <p>Vista interna para revisar registros simulados, validar el flujo de atención y preparar la evolución hacia módulos protegidos.</p>
+</header>
+
+<section class="admin-grid">
+  <article class="summary">
+    @for (item of summary(); track item.label) {
+      <div class="card summary-card">
+        <span class="material-symbols-rounded">{{ item.icon }}</span>
+        <strong>{{ item.value }}</strong>
+        <small>{{ item.label }}</small>
+      </div>
+    }
+  </article>
+
+  <aside class="card actions">
+    <span class="eyebrow">Sesión demo</span>
+    <h2>Herramientas de presentación</h2>
+    <p>Los formularios guardan información en el navegador para que la demostración sea funcional sin backend.</p>
+    <button class="button button--secondary" type="button" (click)="clear()">
+      <span class="material-symbols-rounded">restart_alt</span>
+      Reiniciar datos demo
+    </button>
+    @if (message()) {
+      <p class="notice">{{ message() }}</p>
+    }
+  </aside>
+
+  <article class="card table-card">
+    <div class="table-title">
+      <div>
+        <span class="eyebrow">Convocatorias</span>
+        <h2>Postulaciones recibidas</h2>
+      </div>
+      <span class="pill">{{ store.applications().length }} registros</span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Proyecto</th>
+            <th>Representante</th>
+            <th>Convocatoria</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of store.applications(); track item.id) {
+            <tr>
+              <td>{{ item.businessName }}</td>
+              <td>{{ item.applicantName }}</td>
+              <td>{{ item.callTitle }}</td>
+              <td>{{ item.createdAt | date:'short' }}</td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="4">No existen postulaciones registradas en esta sesión.</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </article>
+
+  <article class="card table-card">
+    <div class="table-title">
+      <div>
+        <span class="eyebrow">Servicios</span>
+        <h2>Asesorías agendadas</h2>
+      </div>
+      <span class="pill">{{ store.appointments().length }} registros</span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Persona</th>
+            <th>Negocio</th>
+            <th>Servicio</th>
+            <th>Fecha tentativa</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of store.appointments(); track item.id) {
+            <tr>
+              <td>{{ item.name }}</td>
+              <td>{{ item.business || 'Sin dato' }}</td>
+              <td>{{ item.serviceTitle }}</td>
+              <td>{{ item.preferredDate }}</td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="4">No existen asesorías registradas en esta sesión.</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </article>
+
+  <article class="card observations">
+    <div class="table-title">
+      <div>
+        <span class="eyebrow">Participación</span>
+        <h2>Observaciones ciudadanas</h2>
+      </div>
+      <span class="pill">{{ store.feedback().length }} registros</span>
+    </div>
+    @for (item of store.feedback(); track item.id) {
+      <div class="observation">
+        <strong>{{ item.citizen }}</strong>
+        <span>{{ item.program }} · {{ item.createdAt | date:'short' }}</span>
+        <p>{{ item.comment }}</p>
+      </div>
+    } @empty {
+      <p class="empty-text">No existen observaciones registradas en esta sesión.</p>
+    }
+  </article>
+</section>

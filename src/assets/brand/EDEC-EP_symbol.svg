@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">Marca piloto EDEC-EP</title>
+  <rect width="128" height="128" rx="20" fill="#0b1f33"/>
+  <path d="M22 88V40h36v12H36v6h20v11H36v7h24v12H22Z" fill="#ffffff"/>
+  <path d="M68 88V40h20c15 0 24 9 24 24s-9 24-24 24H68Zm14-13h6c7 0 10-4 10-11s-3-11-10-11h-6v22Z" fill="#77d7cc"/>
+  <path d="M22 104h84" stroke="#b68a35" stroke-width="8" stroke-linecap="round"/>
+</svg>
