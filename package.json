@@ -1,11 +1,12 @@
 {
   "name": "edec-ep",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "execute": "ng build --configuration=production --base-href /edec-ep/",
     "test": "ng test"
   },
   "private": true,

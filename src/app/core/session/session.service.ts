@@ -6,6 +6,7 @@ export class SessionService {
     displayName: 'Equipo EDEC-EP',
     role: 'Administrador piloto',
     organization: 'Empresa Publica Municipal de Desarrollo Economico de Cuenca',
+    visible: false,
   });
 
   readonly initials = computed(() =>
