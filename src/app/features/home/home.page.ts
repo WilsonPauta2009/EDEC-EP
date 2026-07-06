@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { PortalStoreService } from '../../core/services/portal-store.service';
@@ -11,6 +11,25 @@ import { ProgressCanvasComponent } from '../../shared/progress-canvas/progress-c
   templateUrl: './home.page.html',
   styleUrl: './home.page.scss',
 })
-export class HomePage {
+export class HomePage implements AfterViewInit {
+  @ViewChild('heroVideo') private readonly heroVideo?: ElementRef<HTMLVideoElement>;
+
   protected readonly store = inject(PortalStoreService);
+
+  ngAfterViewInit(): void {
+    setTimeout(() => this.startHeroVideo());
+  }
+
+  private startHeroVideo(): void {
+    const video = this.heroVideo?.nativeElement;
+
+    if (!video) {
+      return;
+    }
+
+    video.muted = true;
+    video.playsInline = true;
+    video.load();
+    void video.play().catch(() => undefined);
+  }
 }
