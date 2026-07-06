@@ -22,7 +22,9 @@
         <span class="material-symbols-rounded">edit_document</span>
         Postular
       </a>
-      <div class="user-badge" [title]="session.user().role">{{ session.initials() }}</div>
+      @if (session.user().visible) {
+        <div class="user-badge" [title]="session.user().role">{{ session.initials() }}</div>
+      }
     </div>
   </header>
 
